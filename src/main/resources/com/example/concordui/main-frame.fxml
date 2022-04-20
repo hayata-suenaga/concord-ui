@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="mainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="400.0" prefWidth="130.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onDMButtonClicked" prefHeight="26.0" prefWidth="130.0" text="DM" />
-            <ListView fx:id="roomList" prefHeight="322.0" prefWidth="130.0" />
-            <Button mnemonicParsing="false" onAction="#onAddButtonClicked" prefHeight="26.0" prefWidth="130.0" text="Add" />
-            <Button mnemonicParsing="false" onAction="#onExploreButtonClicked" prefHeight="26.0" prefWidth="130.0" text="Explore" />
+            <Button id="dmButton" mnemonicParsing="false" onAction="#onDMButtonClicked" prefHeight="26.0" prefWidth="130.0" text="DM" />
+            <ListView id="roomList" fx:id="roomList" prefHeight="322.0" prefWidth="130.0" />
+            <Button id="addButton" mnemonicParsing="false" onAction="#onAddButtonClicked" prefHeight="26.0" prefWidth="130.0" text="Add" />
+            <Button id="exploreButton" mnemonicParsing="false" onAction="#onExploreButtonClicked" prefHeight="26.0" prefWidth="130.0" text="Explore" />
          </children>
       </VBox>
    </left>

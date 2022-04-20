@@ -3,7 +3,6 @@ package com.example.concordui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -16,7 +15,6 @@ public class DmViewController extends BaseController implements Initializable {
 
     @FXML
     void onUsersButtonClicked(ActionEvent event) {
-        System.out.println("users button was clicked!");
         viewFactory.showUsersList();
     }
 

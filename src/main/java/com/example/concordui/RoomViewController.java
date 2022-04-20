@@ -30,6 +30,8 @@ public class RoomViewController extends BaseController implements Initializable 
     public void initialize(URL location, ResourceBundle resources) {
         /* After the controller is bound to the view, set the list values */
         channelList.setItems(client.channelNames);
+
+        //TODO: Figure out how to render a view inside each cell
         chatList.setItems(client.chats);
         userList.setItems(client.userNames);
 

@@ -39,6 +39,7 @@ public class MainFrameController extends BaseController implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
         roomList.setItems(client.roomNames);
         roomList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            System.out.println("Item selected");
             viewFactory.showRoomView();
             client.setSelectedRoom(newValue);
         });

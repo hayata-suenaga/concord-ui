@@ -22,6 +22,10 @@ public class ConcordClient {
         tempInitializeDemoData();
     }
 
+    public boolean login(String userName, String password) {
+        return server.login(userName, password);
+    }
+
     public void setSelectedRoom(String selectedRoom) { this.selectedRoom.set(selectedRoom); }
 
     public void addRoom(String roomName) { this.roomNames.add(roomName); }
