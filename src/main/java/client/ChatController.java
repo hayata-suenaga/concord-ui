@@ -1,4 +1,4 @@
-package com.example.concordui;
+package client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

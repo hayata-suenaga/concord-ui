@@ -1,4 +1,4 @@
-package com.example.concordui;
+package client;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

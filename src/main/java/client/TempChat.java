@@ -1,4 +1,4 @@
-package com.example.concordui;
+package client;
 
 public class TempChat {
     String senderName;

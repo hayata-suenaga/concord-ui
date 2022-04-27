@@ -1,10 +1,8 @@
-package com.example.concordui;
+package client;
 
 import javafx.application.Platform;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +10,6 @@ import org.testfx.api.FxRobot;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.util.WaitForAsyncUtils;
 
 @ExtendWith(ApplicationExtension.class)
 class AppTest {
@@ -66,23 +63,17 @@ class AppTest {
     }
 
     private void selectListItem(String listId, int index, FxRobot robot) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                ListView listView = (ListView) robot.lookup(listId).query();
-                listView.getSelectionModel().clearSelection();
-                listView.getSelectionModel().select(index);
-            }
+        Platform.runLater(() -> {
+            ListView listView = (ListView) robot.lookup(listId).query();
+            listView.getSelectionModel().clearSelection();
+            listView.getSelectionModel().select(index);
         });
     }
 
     private void clearTextField(String fieldId, FxRobot robot) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                TextField textField = (TextField) robot.lookup(fieldId).query();
-                textField.clear();
-            }
+        Platform.runLater(() -> {
+            TextField textField = (TextField) robot.lookup(fieldId).query();
+            textField.clear();
         });
     }
 

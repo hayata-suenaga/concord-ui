@@ -1,14 +1,14 @@
-package com.example.concordui;
+package client;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import server.ConcordAPI;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConcordClient {
-    Server server;
+    ConcordAPI server;
     StringProperty selectedRoom = new SimpleStringProperty();
     ObservableList<String> roomNames = FXCollections.observableArrayList();
     ObservableList<String> channelNames = FXCollections.observableArrayList();
@@ -17,13 +17,17 @@ public class ConcordClient {
     ObservableList<String> dms = FXCollections.observableArrayList();
     ObservableList<String> users = FXCollections.observableArrayList();
 
-    public ConcordClient(Server server) {
+    public ConcordClient(ConcordAPI server) {
         this.server = server;
         tempInitializeDemoData();
     }
 
     public boolean login(String userName, String password) {
-        return server.login(userName, password);
+        try {
+            return server.login(userName, password) != null;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void setSelectedRoom(String selectedRoom) { this.selectedRoom.set(selectedRoom); }

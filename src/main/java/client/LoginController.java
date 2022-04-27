@@ -1,4 +1,4 @@
-package com.example.concordui;
+package client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

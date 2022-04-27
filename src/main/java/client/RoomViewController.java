@@ -1,4 +1,4 @@
-package com.example.concordui;
+package client;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
