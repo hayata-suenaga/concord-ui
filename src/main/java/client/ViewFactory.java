@@ -96,10 +96,9 @@ public class ViewFactory {
         /* Initialize loader and set the controller */
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.fxmlName));
         fxmlLoader.setController(controller);
-        /* Load the fxml file and get the parent node */
-        Parent parent;
-        try { parent = fxmlLoader.load(); }
-        catch (IOException e) { e.printStackTrace(); return null; }
-        return parent;
+        /* Load the fxml file and get the parent (top level) node */
+        try { return fxmlLoader.load();  }
+        catch (Exception e) { System.exit(-1); }
+        return null;
     }
 }

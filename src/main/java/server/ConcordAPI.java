@@ -2,6 +2,7 @@ package server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.Map;
 
 public interface ConcordAPI extends Remote {
@@ -30,4 +31,8 @@ public interface ConcordAPI extends Remote {
     void registerObserver(ConcordClient observer) throws RemoteException;
 
     void removeObserver(ConcordClient observer) throws RemoteException;
+
+    boolean react(String roomId, String channelId, String chatId, String type) throws RemoteException;
+
+    List<Reaction> getReactions(String roomId, String channelId, String chatId) throws RemoteException;
 }

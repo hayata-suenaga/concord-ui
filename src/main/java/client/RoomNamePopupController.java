@@ -13,7 +13,7 @@ public class RoomNamePopupController extends BaseController {
 
     @FXML
     void onCreateButtonClicked(ActionEvent event) {
-        client.addRoom(nameField.getText());
+        this.client.addRoom(nameField.getText());
         viewFactory.closeStageFromNode(nameField);
     }
 

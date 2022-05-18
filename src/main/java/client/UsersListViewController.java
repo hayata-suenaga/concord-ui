@@ -11,12 +11,13 @@ public class UsersListViewController extends BaseController implements Initializ
     @FXML
     private ListView<String> usersList;
 
+
     public UsersListViewController(ConcordClient client, ViewFactory viewFactory, String fxmlName) {
         super(client, viewFactory, fxmlName);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usersList.setItems(client.users);
+//        usersList.setItems(client.users.values().stream().map(user -> user.getUserName()).toList());
     }
 }

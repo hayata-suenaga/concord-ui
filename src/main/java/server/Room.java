@@ -82,6 +82,9 @@ public class Room implements Serializable {
                 && users.equals(another.users);
     }
 
+    @Override
+    public String toString() { return name; }
+
     /* Default Java Beans constructor. Should not be used */
     public Room() { id = UUID.randomUUID().toString(); name = ""; }
     /* Java Beans getter. Not intended to be used */

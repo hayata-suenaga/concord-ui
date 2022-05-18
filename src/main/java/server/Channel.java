@@ -37,6 +37,11 @@ public class Channel implements Serializable {
                 && chats.equals(another.chats);
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     /* Java Beans default constructor */
     public Channel() { id = UUID.randomUUID().toString(); }
     /* Java Beans setters. Not intended to be used */

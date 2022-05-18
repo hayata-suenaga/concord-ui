@@ -10,6 +10,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import server.Server;
 
 @ExtendWith(ApplicationExtension.class)
 class AppTest {

@@ -40,8 +40,8 @@
          <bottom>
             <HBox prefHeight="50.0" prefWidth="383.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField />
-                  <Button mnemonicParsing="false" text="Send" />
+                  <TextField fx:id="msgField" />
+                  <Button mnemonicParsing="false" onAction="#sendBtnClicked" text="Send" />
                </children>
             </HBox>
          </bottom>

@@ -56,6 +56,7 @@ public class Server extends UnicastRemoteObject implements ConcordAPI, Serializa
     public boolean deleteRoom(String actorName, String roomId) {
         if (!rooms.get(roomId).getRoleOfUser(actorName).canDeleteRoom) return false;
         rooms.remove(roomId);
+        for (User user : users.values()) { user.getRoomIds().remove(roomId); }
         roomsChanged();
         return true;
     }
@@ -97,6 +98,14 @@ public class Server extends UnicastRemoteObject implements ConcordAPI, Serializa
     }
 
     public boolean sendChat(String roomId, String channelId, String senderName, String text) {
+        System.out.println(
+                "send chat was invoked with the following arguments: roomId: "
+                        + roomId + " channelId: "
+                        + channelId + " senderName: "
+                        + senderName + " text: "
+                        + text
+        );
+
         if (rooms.get(roomId).sendChat(channelId, senderName, text)) {
             roomsChanged();
             return true;
@@ -135,8 +144,10 @@ public class Server extends UnicastRemoteObject implements ConcordAPI, Serializa
             /* Get the username of the client (observer */
             String userName = observer.getUser().getUserName();
             Map<String, Room> roomsForUser = getRoomsForUser(userName);
+            System.out.println("Line 147 of Server.java");
             observer.updateRooms(roomsForUser);
-        } catch (Exception e) { System.out.println("Error occurred while pushing update of rooms map ");}
+            System.out.println("Line 149 of Server.java");
+        } catch (Exception e) { System.out.println(e);}
     }); }
 
     /* If the users map is changed, encode the updated data and notify the new change to clients */
@@ -148,6 +159,33 @@ public class Server extends UnicastRemoteObject implements ConcordAPI, Serializa
     public void registerObserver(ConcordClient observer) { observers.add(observer); }
 
     public void removeObserver(ConcordClient observer) { observers.remove(observer); }
+
+    @Override
+    public boolean react(String roomId, String channelId, String chatId, String type) throws RemoteException {
+        Chat chat = getChat(roomId, channelId, chatId);
+        chat.react(type);
+        return true;
+    }
+
+    @Override
+    public List<Reaction> getReactions(String roomId, String channelId, String chatId) {
+        Chat chat = getChat(roomId, channelId, roomId);
+        return chat.getReactions();
+    }
+
+    private Chat getChat(String roomId, String channelId, String chatId) {
+        Chat chat =
+                rooms.get(roomId)
+                        .getChannels()
+                        .get(channelId)
+                        .getChats()
+                        .stream()
+                        .filter(item -> item.getId().equals(chatId))
+                        .findAny()
+                        .orElse(null);
+
+        return chat;
+    }
 
     /* Java Beans getters and setters. Not intended to be used */
     public Map<String, Room> getRooms() { return rooms; }

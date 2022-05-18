@@ -1,8 +1,7 @@
 package server;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 public class Chat implements Serializable {
     private String id;
@@ -10,6 +9,9 @@ public class Chat implements Serializable {
     private String message;
     private Date timestamp;
     private boolean isPinned;
+
+    private ReactionFactory reactionFactory = new ReactionFactory();
+    private Map<String, Reaction> reactions = new HashMap<>();
 
     public Chat(String senderName, String message) {
         id = UUID.randomUUID().toString();
@@ -31,6 +33,18 @@ public class Chat implements Serializable {
                 && isPinned == another.isPinned;
     }
 
+    public void react(String reaction) {
+        if (reactions.containsKey(reaction)) {
+            reactions.put(reaction, reactionFactory.createReaction(reaction));
+        } else {
+            reactions.get(reaction).increment();
+        }
+    }
+
+    public List<Reaction> getReactions() {
+        return new ArrayList(reactions.values());
+    }
+
     /* Java Beans default constructor. Not intended to be used */
     public Chat() { id = UUID.randomUUID().toString(); }
     /* Java Beans setters. Not intended to be used */
@@ -45,4 +59,20 @@ public class Chat implements Serializable {
     public Date getTimestamp() { return timestamp; }
     public boolean getIsPinned() { return isPinned; }
     public void setMessage(String message) { this.message = message; }
+
+    public boolean isPinned() {
+        return isPinned;
+    }
+
+    public ReactionFactory getReactionFactory() {
+        return reactionFactory;
+    }
+
+    public void setReactionFactory(ReactionFactory reactionFactory) {
+        this.reactionFactory = reactionFactory;
+    }
+
+    public void setReactions(Map<String, Reaction> reactions) {
+        this.reactions = reactions;
+    }
 }

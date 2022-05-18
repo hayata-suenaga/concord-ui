@@ -21,7 +21,7 @@ public class App {
         Registry registry = LocateRegistry.createRegistry(2500);
         registry.rebind("CONCORD", server);
 
-        //TODO: remove this
-        server.signup("tom", "tom's url", "I'm tom", "password");
+//        //TODO: remove this
+//        server.signup("tom", "tom's url", "I'm tom", "password");
     }
 }
